@@ -1,0 +1,93 @@
+PRACTICA 4 DE ALGORITMOS
+
+AUTORES:
+Javier Hernández Martínez javier.hernandez.martinez@udc.es
+Paula Carril Gontán paula.carril@udc.es
+
+CARACTERÍSTICAS DEL EQUIPO:
+Dell Vostro 15 5510
+Memoria RAM: 15.4 GiB DDR4 3200MHz
+Procesador: 11th Gen Intel(R) Core(TM) i7-11390H @ 3.40GHz x 4
+Sistema operativo: Linux Mint 21.2 Cinnamon
+Arquitectura: 64 bits
+
+INTRODUCCION:
+
+En esta practica trabajaremos con grafos e implementaremos un algoritmo para medir el camino minimo entre vertices
+(algoritmo de Dijkstra) del cual mediremos y analizaremos sus tiempos de ejecucion con grafos de distintos tamaños
+representados mediante sus matrices de adyacencia.
+
+A continuación se mostrara un informe de la práctica. Para empezar los resultados de los tests de prueba en los que
+se comprueba el correcto funcionamiento del algoritmo.
+
+Despues se mostraran los tiempos de ejecución (en microsegundos) y las cotas ajustada, sobreestimada y subestimada 
+del algortimo de Dijkstra.
+
+TEST DE DIJKSTRA
+
+Caso 1 (5 nodos):
+Matriz de Adyacencia:
+(  0  1  8  4  7)
+(  1  0  2  6  5)
+(  8  2  0  9  5)
+(  4  6  9  0  3)
+(  7  5  5  3  0)
+
+Matriz de distancias minimas:
+(  0  1  3  4  6)
+(  1  0  2  5  5)
+(  3  2  0  7  5)
+(  4  5  7  0  3)
+(  6  5  5  3  0)
+
+Caso 2 (4 nodos):
+Matriz de Adyacencia:
+(  0  1  4  7)
+(  1  0  2  8)
+(  4  2  0  3)
+(  7  8  3  0)
+
+Matriz de distancias minimas:
+(  0  1  3  6)
+(  1  0  2  5)
+(  3  2  0  3)
+(  6  5  3  0)
+
+Se puede comprobar que los valores de la matriz resultado son correctos por lo que verifican el correcto
+funcionamiento del algoritmo.
+
+Ahora se medirán los tiempos de ejecución (en microsegundos) del algoritmo de Dijkstra con grafos de distintos tamaños
+generados aleatoriamente y se muestran sus cotas ajustadas, subestimada y sobreestimada.
+Para los tiempos menores de 500 microsegundos (*) se utilizará el método visto en clase para mejorar la
+exactitud de las medidas en el que se repetirá la ejecución del algoritmo k veces con un bucle. En este caso
+utilizaremos k=1000.
+
+DIJKSTRA:
+
+    Nº de nodos del grafo: n
+    Tiempo de ejecución: t(n)
+    Cota ajustada: n^2.747
+    Cota subestimada: n^2.5
+    Cota sobreestimada: n^3.2
+
+
+                     n           t(n)     t(n)/n^2.5    t(n)/n^2.747     t(n)/n^3.2
+
+    (*)             16         52.169       0.050946        0.025686       0.007315
+    (*)             32        340.592       0.058798        0.024980       0.005197
+                    64       2343.000       0.071503        0.025597       0.003890
+                   128      15125.000       0.081596        0.024614       0.002733
+                   256     101432.000       0.096733        0.024589       0.001994
+                   512     681195.000       0.114841        0.024598       0.001457
+
+
+    OBSERVACIONES: La sucesión de la cota ajustada tiende a 0.246 aproximadamente. La complejidad computacional es de
+    n^2.747. El tiempo de ejecución del algoritmo aumenta con cada aumento del valor de n. El valor de la cota subestimada
+    crece cuando n tiene a infinito. El valor de la cota sobreestimada decrece cuando n tiene a infinito. 
+
+
+CONCLUSIONES:
+
+Gracias al estudio y análisis de la complejidad y tiempos de ejecución del algoritmo podemos concluir que el algoritmo
+de Dijkstra es una forma relativamente poco eficiente de calcular el camino mínimo entre nodos de un grafo,
+puesto que cuenta con una complejidad de cerca de O(n^3).

@@ -1,0 +1,90 @@
+PRÁCTICA 1 DE ALGORÍTMOS
+
+AUTORES:
+Javier Hernández Martínez javier.hernandez.martinez@udc.es
+Paula Carril Gontán paula.carril@udc.es
+
+CARACTERÍSTICAS DEL EQUIPO:
+Dell Vostro 15 5510
+Memoria RAM: 15.4 GiB DDR4 3200MHz
+Procesador: 11th Gen Intel(R) Core(TM) i7-11390H @ 3.40GHz x 4
+Sistema operativo: Linux Mint 21.2 Cinnamon
+Arquitectura: 64 bits
+
+INTRODUCCIÓN:
+La práctica consiste en implementar en C dos algoritmos de distinta eficiencia que resolverán el
+mismo problema y medir y analizar sus tiempos de ejecución.
+Las algoritmos implementados realizan la suma de la subsecuencia maxima dados n numeros enteros
+
+A continuación se mostrara un informe de la práctica. Para empezar los resultados de los dos tests
+de prueba en los que se comprueba el correcto funcionamiento de los algoritmos el primero con una
+secuencia de numeros introducida y el segundo con vectores generados aleatoriamente. Despues se mostrarán
+los tiempos de ejecución (en microsegundos) de ambos algoritmos y sus cotas superior e inferior.
+
+
+RESULTADOS TEST 1:
+
+                            SumaSubMax1     SumaSubMax2
+    [-9,  2, -5, -4,  6]              6               6
+    [ 4,  0,  9,  2,  5]             20              20
+    [-2, -1, -9, -7, -1]              0               0
+    [ 9, -2,  1, -7, -8]              9               9
+    [15, -2, -5, -4, 16]             20              20
+    [ 7, -5,  6,  7, -7]             15              15
+
+
+RESULTADOS TEST 2:
+
+                                        SumaSubMax1     SumaSubMax2
+    [  7  9  2  6  5 -2  8  3  1 ]          39              39
+    [ -5 -1  8  4 -9  5  1 -8  3 ]          12              12
+    [ -4  6 -7 -2 -8 -5  9  4 -5 ]          13              13
+    [  9 -8 -3  0  8 -4  8  1  8 ]          21              21
+    [ -4 -1  1  6  1  6  1 -8  6 ]          15              15
+    [ -6  2  4  3  4  0  5  8 -1 ]          26              26
+    [  6  5  9 -9  1  7 -3 -9  2 ]          20              20
+    [  0  5 -7 -2 -9 -1  8  3  9 ]          20              20
+    [  2 -8 -9 -2 -5 -1 -7  7  9 ]          16              16
+    [ -1 -1  7  4 -5  2  4 -8 -7 ]          12              12
+
+
+Los valores son correctos y coincides por lo que ambos algoritmos funcionan.
+
+Ahora se medirán los tiempos de ejecución (en microsegundos) de ambos algoritmos con vectores aleatorios de distintos tamaños.
+Para los tiempos menores de 500 microsegundos (*) se utilizará el método visto en clase para mejorar la exactitud
+de las medidas en el que se repetirá la ejecución del algoritmo k veces con un bucle. En este caso utilizaremos k=1000.
+
+sumaSubMax1:
+                 n           t(n)     t(n)/n^1.8       t(n)/n^2     t(n)/n^2.2
+(*)            500        249.043       0.003452       0.000996       0.000287
+              1000        985.000       0.003921       0.000985       0.000247
+              2000       3937.000       0.004501       0.000984       0.000215
+              4000      15685.000       0.005150       0.000980       0.000187
+              8000      62900.000       0.005930       0.000983       0.000163
+             16000     248997.000       0.006742       0.000973       0.000140
+             32000     992848.000       0.007720       0.000970       0.000122
+
+
+OBSERVACIONES: La cota ajustada tiende a 0.00098 microsegundos aproximadamente. La complejidad computacional es de n^2. El tiempo
+de ejecución del algoritmo aumenta con cada aumento del valor de n. La cota subestimada crece cuando n tiene a infinito. La cota
+sobreestimada decrece cuando n tiene a infinito.
+
+sumaSubMax2:
+                 n           t(n)     t(n)/n^0.8         t(n)/n     t(n)/n^1.1
+(*)            500          0.827       0.005732       0.001654       0.000888
+(*)           1000          1.657       0.006597       0.001657       0.000830
+(*)           2000          3.309       0.007566       0.001655       0.000774
+(*)           4000          6.703       0.008803       0.001676       0.000731
+(*)           8000         12.933       0.009755       0.001617       0.000658
+(*)          16000         25.646       0.011110       0.001603       0.000609
+(*)          32000         51.209       0.012742       0.001600       0.000567
+(*)          64000        102.270       0.014615       0.001598       0.000528
+(*)         128000        206.039       0.016911       0.001610       0.000497
+(*)         256000        409.366       0.019298       0.001599       0.000460
+
+OBSERVACIONES: La cota ajustada tiende a 0.0016 microsegundos aproximadamente. La complejidad computacional es de n. El tiempo de
+ejecución del algoritmo aumenta con cada aumento del valor de n. La cota subestimada crece cuando n tiene a infinito. La cota
+sobreestimada decrece cuando n tiene a infinito.
+
+CONCLUSION: De los dos algoritmos que estudiamos queda claro que el segundo, SumaSubMax2, es el mejor puesto que su complejidad es
+mucho menor que el otro algoritmo. Así se refleja en los tiempos de ejecución que son mucho menores en el segundo algoritmo.

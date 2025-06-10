@@ -1,0 +1,260 @@
+PRACTICA 3 DE ALGORITMOS
+
+AUTORES:
+Javier Hernández Martínez javier.hernandez.martinez@udc.es
+Paula Carril Gontán paula.carril@udc.es
+
+CARACTERÍSTICAS DEL EQUIPO:
+    ASUS ROG Strix GL553VD 1.0
+    Memoria RAM: 12120856 KiB
+    Procesador: Intel® Core™ i7-7700HQ CPU @ 2.80GHz
+    Sistema operativo: Ubuntu 23,04
+    Arquitectura: 64 bits
+
+INTRODUCCION:
+En esta practica trabajaremos con algoritmos de monticulos y se dividira en dos partes; la primera consiste en 
+implementar en C dos operaciones; crear monticulo y eliminar menor, en las que se apoyara despues para crear el 
+algoritmo de ordenacion de monticulos.
+En la segunda parte implementaremos un algoritmo de ordenacion de monticulos y mediremos y analizaremos su tiempo
+de ejecución en tres casos distintos; incializacion ascendente, descente y aleatoria.
+
+A continuación se mostrara un informe de la práctica. Para empezar los resultados de los tests de prueba en los que
+se comprueba el correcto funcionamiento de las operaciones y del algoritmo de ordenacion en los tres casos que se 
+mencionaron antes.
+Despues se mostraran los tiempos de ejecución (en microsegundos) y las cotas ajustada, sobreestimada y subestimada 
+de los algoritmos de creacion de monticulo y ordenacion.
+
+TEST DE MONTICULOS
+
+CREACION DE MONTICULO
+
+    Vector inicializado: [-7,    6,   -6,   -6,    1,   -1,    1,    2,   -7]
+    Vector del monticulo: [-7,   -7,   -6,   -6,    1,   -1,    1,    2,    6]
+
+ELIMINAR MENOR (Los monticulos se leen de izquierda a derecha)
+
+    Monticulo inicial:
+    ---------------------------
+               1
+          -6
+              -1
+      -7
+               1
+          -7
+                   6
+              -6
+                   2
+    ---------------------------
+    Eliminamos el menor (-7)
+    ---------------------------
+               1
+          -6
+              -1
+      -7
+               1
+          -6
+               2
+                   6
+    ---------------------------
+    Eliminamos el menor (-7)
+    ---------------------------
+               1
+          -1
+               6
+      -6
+               1
+          -6
+               2
+    ---------------------------
+    Eliminamos el menor (-6)
+    ---------------------------
+          -1
+               6
+      -6
+               1
+           1
+               2
+    ---------------------------
+    Eliminamos el menor (-6)
+    ---------------------------
+           6
+      -1
+               1
+           1
+               2
+    ---------------------------
+    Eliminamos el menor (-1)
+    ---------------------------
+           6
+       1
+           1
+               2
+    ---------------------------
+    Eliminamos el menor (1)
+    ---------------------------
+           6
+       1
+           2
+    ---------------------------
+    Eliminamos el menor (1)
+    ---------------------------
+       2
+           6
+    ---------------------------
+    Eliminamos el menor (2)
+    ---------------------------
+       6
+    ---------------------------
+    Eliminamos el menor (6)
+    ---------------------------
+    Monticulo vacio
+    ---------------------------
+
+TEST DE ORDENACION
+
+    Inicializacion ascendente
+    [1,   2,   3,   4,   5,   6,   7,   8,   9]
+    Ordenado? 1
+
+    Ordenacion por monticulos
+    [1,   2,   3,   4,   5,   6,   7,   8,   9]
+    Ordenado? 1
+
+    ---------------------------------------------
+
+    Inicializacion descendente
+    [9,   8,   7,   6,   5,   4,   3,   2,   1]
+    Ordenado? 0
+
+    Ordenacion por monticulos
+    [1,   2,   3,   4,   5,   6,   7,   8,   9]
+    Ordenado? 1
+
+    ---------------------------------------------
+
+    Inicializacion aleatoria
+    [-2,  -8,   0,  -8,   1,  -8,   1,  -2,   8]
+    Ordenado? 0
+
+    Ordenacion por monticulos
+    [-8,  -8,  -8,  -2,  -2,   0,   1,   1,   8]
+    Ordenado? 1
+
+Los valores son correctos y coinciden por lo que el algoritmo funciona correctamente en los tres casos y las
+operaciones realizan correctamenta sus funciones.
+
+Ahora se medirán los tiempos de ejecución (en microsegundos) de la creacion del monticulo y del algoritmo de 
+ordenacion con vectores de distintos tamaños e inicializados en los tres casos distintas y sus cotas ajustadas,
+subestimada y sobreestimada.
+Para los tiempos menores de 500 microsegundos (*) se utilizará el método visto en clase para mejorar la
+exactitud de las medidas en el que se repetirá la ejecución del algoritmo k veces con un bucle. En este caso
+utilizaremos k=1000.
+
+CREACION DEL MONTICULO:
+
+    Tamaño del vector: n
+    Tiempo de ejecución: t(n)
+    Cota ajustada: n^1.105 
+    Cota teorica: n
+    Cota subestimada: n^0.8
+    Cota sobreestimada: n^1.3
+
+                     n           t(n)            t(n)/n^0.8       t(n)/n^1.105             t(n)/n            t(n)/n^1.3
+    (*)            500          5.377              0.037270           0.005600           0.010754              0.001667
+    (*)           1000         10.602              0.042207           0.005133           0.010602              0.001335
+    (*)           2000         23.512              0.053761           0.005292           0.011756              0.001202
+    (*)           4000         52.561              0.069026           0.005500           0.013140              0.001091
+    (*)           8000        128.618              0.097013           0.006257           0.016077              0.001085
+    (*)          16000        281.876              0.122113           0.006375           0.017617              0.000965
+                 32000        542.000              0.134859           0.005699           0.016938              0.000754
+                 64000       1136.000              0.162343           0.005553           0.017750              0.000642
+                128000       2360.000              0.193706           0.005363           0.018437              0.000541
+                256000       4981.000              0.234814           0.005263           0.019457              0.000464
+
+
+    OBSERVACIONES: La sucesión de la cota ajustada tiende a 0.005 aproximadamente. La complejidad computacional es de 
+    n^1.105. El tiempo de ejecución del algoritmo aumenta con cada aumento del valor de n. El valor de la cota subestimada
+    crece cuando n tiene a infinito. El valor de la cota sobreestimada decrece cuando n tiene a infinito. 
+
+OREDENACION POR MONTICULOS:
+
+    Inicializacion ascendente:
+
+    Tamaño del vector: n
+    Tiempo de ejecución: t(n)
+    Cota ajustada: (nlog(n))  
+    Cota subestimada: n
+    Cota sobreestimada: n^1.2
+
+                     n           t(n)                t(n)/n     t(n)/(nlog(n))            t(n)/n^1.2
+    (*)            500         38.659              0.077318           0.012441              0.022309
+    (*)           1000         87.843              0.087843           0.012717              0.022065
+    (*)           2000        195.132              0.097566           0.012836              0.021335
+    (*)           4000        420.637              0.105159           0.012679              0.020019
+                  8000        949.000              0.118625           0.013199              0.019659
+                 16000       1948.000              0.121750           0.012577              0.017565
+                 32000       4106.000              0.128312           0.012369              0.016115
+                 64000       8666.000              0.135406           0.012236              0.014805
+                128000      19255.000              0.150430           0.012792              0.014318
+                256000      40892.000              0.159734           0.012827              0.013236
+
+    OBSERVACIONES: La sucesión de la cota ajustada tiende a 0.012 aproximadamente. La complejidad computacional es de 
+    nlogn. El tiempo de ejecución del algoritmo aumenta con cada aumento del valor de n. El valor de la cota subestimada
+    crece cuando n tiene a infinito. El valor de la cota sobreestimada decrece cuando n tiene a infinito.
+
+    Inicializacion descendente:
+
+    Tamaño del vector: n
+    Tiempo de ejecución: t(n)
+    Cota ajustada: (nlog(n))  
+    Cota subestimada: n
+    Cota sobreestimada: n^1.2
+
+                     n           t(n)                t(n)/n     t(n)/(nlog(n))            t(n)/n^1.2
+    (*)            500         41.914              0.083828           0.013489              0.024188
+    (*)           1000         91.022              0.091022           0.013177              0.022864
+    (*)           2000        206.901              0.103451           0.013610              0.022622
+    (*)           4000        441.986              0.110496           0.013322              0.021035
+                  8000        955.000              0.119375           0.013283              0.019783
+                 16000       2132.000              0.133250           0.013765              0.019224
+                 32000       4141.000              0.129406           0.012475              0.016253
+                 64000       8875.000              0.138672           0.012531              0.015162
+                128000      19689.000              0.153820           0.013080              0.014641
+                256000      39817.000              0.155535           0.012490              0.012888
+
+    OBSERVACIONES: La sucesión de la cota ajustada tiende a 0.013 aproximadamente. La complejidad computacional es de
+    n^1.105. El tiempo de ejecución del algoritmo aumenta con cada aumento del valor de n. El valor de la cota subestimada
+    crece cuando n tiene a infinito. El valor de la cota sobreestimada decrece cuando n tiene a infinito.
+
+    Inicializacion aleatoria:
+
+    Tamaño del vector: n
+    Tiempo de ejecución: t(n)
+    Cota ajustada: (nlog(n))  
+    Cota subestimada: n
+    Cota sobreestimada: n^1.2
+
+                     n           t(n)            t(n)/n^0.8     t(n)/(nlog(n))            t(n)/n^1.2
+    (*)            500         50.980              0.353365           0.016407              0.029420
+    (*)           1000        110.020              0.437998           0.015927              0.027636
+    (*)           2000        239.933              0.548613           0.015783              0.026233
+                  4000        506.000              0.664512           0.015252              0.024081
+                  8000       1085.000              0.818385           0.015091              0.022476
+                 16000       2403.000              1.041017           0.015515              0.021668
+                 32000       5301.000              1.318979           0.015969              0.020805
+                 64000      11609.000              1.659017           0.016391              0.019833
+                128000      25170.000              2.065928           0.016721              0.018717
+                256000      53102.000              2.503335           0.016657              0.017188
+
+    OBSERVACIONES: La sucesión de la cota ajustada tiende a 0.015 aproximadamente. La complejidad computacional es de 
+    n^1.105. El tiempo de ejecución del algoritmo aumenta con cada aumento del valor de n. El valor de la cota subestimada
+    crece cuando n tiene a infinito. El valor de la cota sobreestimada decrece cuando n tiene a infinito.
+
+CONCLUSIONES: 
+
+En el algoritmo de creacion del monticulo los tiempos no se nos ajustan con las cotas teoricas por lo que utilizamos un 
+cota ligeramente superior para hacer las mediciones y no se aprecia ninguna anomalia en los tiempos.
+
+En el algoritmo de ordenacion del monticulo los tres casos que se miden son ascendente, descendente y aleatorio y no 
+existe un peor o mejor caso lo cual se puede apreciar en los tiempos de ejecucion que apenas varian de una tabla a otra.
+Este algoritmo actúa de la forma esperada según la teoría y no se aprecia ninguna anomalía en los tiempos.

@@ -1,0 +1,226 @@
+PRÁCTICA 2 DE ALGORÍTMOS
+
+AUTORES:
+Javier Hernández Martínez javier.hernandez.martinez@udc.es
+Paula Carril Gontán paula.carril@udc.es
+
+CARACTERÍSTICAS DEL EQUIPO:
+    ASUS ROG Strix GL553VD 1.0
+    Memoria RAM: 12120856 KiB
+    Procesador: Intel® Core™ i7-7700HQ CPU @ 2.80GHz
+    Sistema operativo: Ubuntu 23,04
+    Arquitectura: 64 bits
+
+INTRODUCCIÓN:
+La práctica consiste en implementar en C dos algoritmos de distinta eficiencia que resolverán el mismo problema
+y medir y analizar sus tiempos de ejecución en tres casos distintos; el mejor, el peor y uno aleatorio.
+Los algoritmos implementados ordenan un vector de forma ascendente utilizando ordenación por shell y ordenación
+por inserción.
+
+A continuación se mostrará un informe de la práctica. Para empezar los resultados de los tests de prueba en
+los que se comprueba el correcto funcionamiento de los dos algoritmos en los tres casos que se comentaron antes.
+En cada caso se inicializará el vector a ordenar de una forma distinta; ascendente (mejor caso), descendente
+(peor caso) y aleatoria. Despues se mostrarán los tiempos de ejecución (en microsegundos) de ambos algoritmos y
+sus cotas ajustada, sobreestimada y subestimada.
+
+
+RESULTADOS TEST INICIALIZACIÓN ASCENDENTE:
+
+    Inicializacion ascendente
+    [  1  2  3  4  5  6  7  8  9]
+    Ordenado? 1
+
+    Ordenacion por insercion
+    [  1  2  3  4  5  6  7  8  9]
+    Ordenado? 1
+
+    Ordenacion por shell
+    [  1  2  3  4  5  6  7  8  9]
+    Ordenado? 1
+
+
+RESULTADOS TEST INICIALIZACIÓN DESCENDENTE:
+
+    Inicializacion descendente
+    [  9  8  7  6  5  4  3  2  1]
+    Ordenado? 0
+
+    Ordenacion por insercion
+    [  1  2  3  4  5  6  7  8  9]
+    Ordenado? 1
+
+    Ordenacion por shell
+    [  1  2  3  4  5  6  7  8  9]
+    Ordenado? 1
+
+
+RESULTADOS TEST INICIALIZACIÓN ALEATORIA:
+
+    Inicializacion aleatoria
+    [ -6 -6  5 -2  2  2 -8 -8 -4]
+    Ordenado? 0
+
+    Ordenacion por insercion
+    [ -8 -8 -6 -6 -4 -2  2  2  5]
+    Ordenado? 1
+
+    Ordenacion por shell
+    [ -8 -8 -6 -6 -4 -2  2  2  5]
+    Ordenado? 1
+
+
+Los valores son correctos y coinciden por lo que ambos algoritmos funcionan correctamente en los tres casos.
+
+Ahora se medirán los tiempos de ejecución (en microsegundos) de ambos algoritmos con vectores de distintos
+tamaños e inicializados en los tres casos distintas y sus cotas ajustadas, subestimada y sobreestimada.
+Para los tiempos menores de 500 microsegundos (*) se utilizará el método visto en clase para mejorar la
+exactitud de las medidas en el que se repetirá la ejecución del algoritmo k veces con un bucle. En este caso
+utilizaremos k=1000.
+
+ORDENACIÓN POR INSERCIÓN (ord_ins):
+
+    Ordenacion por insercion con inicializacion ascendente:
+
+    Tamaño del vector: n
+    Tiempo de ejecución: t(n)
+    Cota ajustada: n
+    Cota subestimada: n^0.9
+    Cota sobreestimada: n^1.1
+
+                     n           t(n)            t(n)/n^0.9             t(n)/n            t(n)/n^1.1
+    (*)            500          1.684              0.006270           0.003368              0.001809
+    (*)           1000          3.465              0.006914           0.003465              0.001737
+    (*)           2000          6.801              0.007272           0.003400              0.001590
+    (*)           4000         13.983              0.008012           0.003496              0.001525
+    (*)           8000         27.283              0.008377           0.003410              0.001388
+    (*)          16000         54.081              0.008899           0.003380              0.001284
+    (*)          32000        102.514              0.009040           0.003204              0.001135
+
+    OBSERVACIONES: La sucesión de la cota ajustada tiende a 0.0033 aproximadamente. La complejidad
+    computacional es de n. El tiempo de ejecución del algoritmo aumenta con cada aumento del valor de n. El
+    valor de la cota subestimada crece cuando n tiene a infinito. El valor de la cota sobreestimada decrece
+    cuando n tiene a infinito.
+
+    Ordenacion por insercion con inicializacion descendente (peor caso):
+
+    Tamaño del vector: n
+    Tiempo de ejecución: t(n)
+    Cota ajustada: n^2
+    Cota subestimada: n^1.9
+    Cota sobreestimada: n^2.1
+
+                     n           t(n)            t(n)/n^1.9           t(n)/n^2            t(n)/n^2.1
+    (*)            500        323.524              0.002409           0.001294              0.000695
+                  1000       1267.000              0.002528           0.001267              0.000635
+                  2000       4847.000              0.002591           0.001212              0.000567
+                  4000      20202.000              0.002894           0.001263              0.000551
+                  8000      78278.000              0.003004           0.001223              0.000498
+                 16000     308462.000              0.003172           0.001205              0.000458
+                 32000    1257496.000              0.003465           0.001228              0.000435
+
+    OBSERVACIONES: La sucesión de la cota ajustada tiende a 0.0012 aproximadamente. La complejidad
+    computacional es de n^2. El tiempo de ejecución del algoritmo aumenta con cada aumento del valor de n. El
+    valor de la cota subestimada crece cuando n tiene a infinito. El valor de la cota sobreestimada decrece
+    cuando n tiene a infinito.
+
+    Ordenacion por insercion con inicializacion aleatoria:
+
+    Tamaño del vector: n
+    Tiempo de ejecución: t(n)
+    Cota ajustada: n^2
+    Cota subestimada: n^1.9
+    Cota sobreestimada: n^2.1
+
+                     n           t(n)            t(n)/n^1.9           t(n)/n^2            t(n)/n^2.1
+    (*)            500        159.447              0.001187           0.000638              0.000343
+                  1000        635.000              0.001267           0.000635              0.000318
+                  2000       2495.000              0.001334           0.000624              0.000292
+                  4000       9961.000              0.001427           0.000623              0.000272
+                  8000      40167.000              0.001542           0.000628              0.000255
+                 16000     160329.000              0.001649           0.000626              0.000238
+                 32000     636691.000              0.001754           0.000622              0.000220
+
+    OBSERVACIONES: La sucesión de la cota ajustada tiende a 0.00062 aproximadamente. La
+    complejidad computacional es de n^2. El tiempo de ejecución del algoritmo aumenta con cada aumento del valor
+    de n. El valor de la cota subestimada crece cuando n tiene a infinito. El valor de la cota sobreestimada
+    decrece cuando n tiene a infinito.
+
+ORDENACIÓN POR SHELL (ord_shell):
+
+    Ordenacion por shell con inicializacion ascendente (mejor caso):
+
+    Tamaño del vector: n
+    Tiempo de ejecución: t(n)
+    Cota ajustada: nlog n
+    Cota subestimada: (nlog n)^0.9
+    Cota sobreestimada: (nlog n)^1.1
+
+                     n           t(n)     t(n)/(nlog n)^0.9      t(n)/(nlog n)     t(n)/(nlog n)^1.1
+    (*)            500         16.298              0.011722           0.005245              0.002347
+    (*)           1000         36.536              0.012803           0.005289              0.002185
+    (*)           2000         79.164              0.013640           0.005208              0.001988
+    (*)           4000        175.552              0.014985           0.005292              0.001869
+    (*)           8000        380.972              0.016213           0.005299              0.001732
+                 16000        828.000              0.017661           0.005346              0.001618
+                 32000       1776.000              0.019075           0.005350              0.001501
+
+    OBSERVACIONES: La sucesión de la cota ajustada tiende a 0.0053 aproximadamente. La complejidad
+    computacional es de nlog n. El tiempo de ejecución del algoritmo aumenta con cada aumento del valor de n. El
+    valor de la cota subestimada crece cuando n tiene a infinito. El valor de la cota sobreestimada decrece
+    cuando n tiene a infinito.
+
+    Ordenacion por shell con inicializacion descendente:
+
+    Tamaño del vector: n
+    Tiempo de ejecución: t(n)
+    Cota ajustada: n^1.144
+    Cota subestimada: n^0.9
+    Cota sobreestimada: n^1.4
+
+                     n           t(n)            t(n)/n^0.9       t(n)/n^1.144            t(n)/n^1.4
+    (*)            500         22.998              0.085628           0.018796              0.003829
+    (*)           1000         53.909              0.107563           0.019937              0.003401
+    (*)           2000        118.487              0.126690           0.019829              0.002833
+    (*)           4000        257.501              0.147545           0.019499              0.002333
+                  8000        576.000              0.176865           0.019737              0.001977
+                 16000       1238.000              0.203710           0.019196              0.001610
+                 32000       2651.000              0.233762           0.018600              0.001307
+
+    OBSERVACIONES: La sucesión de la cota ajustada tiende a 0.019 aproximadamente. La complejidad
+    computacional es de n^1.144. El tiempo de ejecución del algoritmo aumenta con cada aumento del valor de n. El
+    valor de la cota subestimada crece cuando n tiene a infinito. El valor de la cota sobreestimada decrece.
+
+
+    Ordenacion por shell con inicializacion aleatoria:
+
+    Tamaño del vector: n
+    Tiempo de ejecución: t(n)
+    Cota ajustada: n^1.192
+    Cota subestimada: n
+    Cota sobreestimada: n^1.4
+
+                     n           t(n)                t(n)/n       t(n)/n^1.192            t(n)/n^1.4
+    (*)            500         55.458              0.110916           0.033635              0.009234
+    (*)           1000        126.759              0.126759           0.033650              0.007998
+    (*)           2000        287.893              0.143946           0.033451              0.006883
+                  4000        655.000              0.163750           0.033311              0.005934
+                  8000       1490.000              0.186250           0.033167              0.005115
+                 16000       3391.000              0.211938           0.033038              0.004411
+                 32000       7686.000              0.240187           0.032776              0.003789
+
+    OBSERVACIONES: La sucesión de la cota ajustada tiende a 0.033 aproximadamente. La complejidad
+    computacional es de n^1.192. El tiempo de ejecución del algoritmo aumenta con cada aumento del valor de n. El
+    valor de la cota subestimada crece cuando n tiene a infinito. El valor de la cota sobreestimada decrece.
+
+
+CONCLUSIONES: Los tres casos que se miden con los dos algoritmos son ascendente (mejor caso), descendente (peor caso) 
+y aleatoria.
+En ordenacion por insercion e puede apreciar una gran diferencia entre los tiempos del mejor caso y los tiempos del 
+peor caso siendo los primeros mucho menores.
+En ordenacion por shell los tiempos del mejor caso siguen siendo bastante menores que los del peor caso pero no se
+aprecia tanta diferencia como en los tiempos del otro algoritmo debido al tipo de implementación de cada uno.
+Los dos algoritmos actúan de la forma esperada según la teoría y no se aprecia ninguna anomalía en los tiempos lo que
+si podemos concluir es que el algoritmo de ordenación por shell es el más eficiente de los dos ya que tiene menos 
+complejidad computacional lo que se puede apreciar en los tiempos del segundo son en general mucho menores y además hay
+menos variación entre los distintos casos, mientras que el primer algoritmo tiene un tiempo de ejecución muchisimo menor
+para el mejor de los casos pero muchisimo meyor para el peor de los casos.
